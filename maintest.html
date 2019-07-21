@@ -1,0 +1,356 @@
+<?php
+
+session_start();
+//если пользователь аторизованs
+if (isset($_COOKIE['email'])) {
+	$mysqli = new mysqli('localhost', 'root', 'master', 'momsitedatabase');
+	if ($mysqli->connect_error) {
+		// код для возвращения таблички с ошибкой по причине сбоя работы бд или сервера
+		exit($mysqli->connect_error);
+	}
+
+	$email=$_COOKIE['email'];
+	$query="select member_login from members_data NATURAL JOIN members WHERE email='$email'";
+	$row=$mysqli->query($query);
+	$result=$row->fetch_row();
+	$login=$result[0];
+}
+
+?>
+<!DOCTYPE html>
+<html lang="en" >
+<head >
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+	<script type="text/javascript" src="jquery.js" ></script >
+	<script type="text/javascript" src="productsjs.js" ></script >
+	<script type="text/javascript" src="registerjs.js" ></script >
+	<script type="text/javascript" src="login.js"></script>
+	<script type="text/javascript" src="/site/node_modules/owl.carousel/dist/owl.carousel.js"></script>
+<!--	<script type="text/javascript" src="cyclebanner.js"></script>-->
+	<link rel='stylesheet' type='text/css' href='maincss.css' >
+	<link rel="stylesheet" type="text/css" href="/site/node_modules/owl.carousel/dist/assets/owl.carousel.css">
+	<link rel="stylesheet" type="text/css" href="/site/node_modules/owl.carousel/dist/assets/owl.theme.default.css">
+
+	<title >
+		Главная страница
+	</title >
+</head >
+
+<body id="body" >
+
+<div id="maincontent" class="maincontent" >
+	
+	<div id="head" class="head" >
+		<div id="logo" class="logo" >
+			logo
+		</div >
+		
+		<div id="info" class="info" >
+			
+			<div class="telephones" id="telephones" >
+				telefoni + socseti
+			
+			</div >
+			
+			<div id="callback" class="callback" >
+				callback
+			</div >
+			
+			<div id="top-info" class="top-info" >
+				bla bla bla
+				<div class="social" id="social">
+					socseti
+				</div>
+			</div >
+			
+			<div class="search" id="search" >
+				poisk
+			</div >
+			
+			<div id="registerblock" class="registerblock" >
+				
+				<div class="language" id="language" >lang</div >
+
+				<div id="cart" class="cart" >
+					corzina
+				</div >
+
+				<div id="enter-register-div" class="enter-register-div">
+					<div id="enter" class="enter" >
+						<a class="enter-button" id="enter-button" > вход</a >
+					</div >
+					<div id="register" class="register" >
+						<a class="reg-button" id="reg-button" >регистрация</a >
+					</div >
+				</div>
+
+				<div id="is-user-logged" class="is-user-logged">
+
+					<div id="greeting" class ="greeting"></div>
+					<div id="user-menu"> </div>
+
+				</div>
+
+			</div >
+		</div >
+		
+		<div class="menu" id="menu" >
+			
+			<ul class="menu-buttons-ul" id="menu-buttons-ul" >
+				
+				<li class="top-menu" id="top-menu-main" >
+					<a id="top-menu-main-a" class="top-menu-a" href="/site/maintest.html" >главная</a >
+				</li >
+
+				<li class="top-menu" id="top-menu-print" >
+					<a id="top-menu-print-a" class="top-menu-a" href="" >печать</a >
+
+					<ul id="top-menu-print-sublist-ul" class="top-menu-sublist-ul" >
+
+						<li class="top-menu-sublist-li" id="top-menu-print-sublist-li-1" >
+							визитки
+							<ul id="ul-li-ul-li-ul-1" class="ul-li-ul-li-ul" >
+								<li >конструктор визиток</li >
+								<li >шаблоны визиток</li >
+							</ul >
+						</li >
+
+						<li class="top-menu-sublist-li" id="top-menu-print-sublist-li-2" >
+							бланки
+							<ul id="ul-li-ul-li-ul-2" class="ul-li-ul-li-ul" >
+								<li >фирменные</li >
+								<li >самоопирующиеся бланки</li >
+								<li >сертификаты</li >
+							</ul >
+						</li >
+
+						<li class="top-menu-sublist-li" id="top-menu-print-sublist-li-3" >
+							конверты
+							<ul id="ul-li-ul-li-ul-3" class="ul-li-ul-li-ul" >
+								<li >евро формат</li >
+								<li >с4 форма</li >
+								<li >с5 формат</li >
+							</ul >
+						</li >
+
+						<li class="top-menu-sublist-li" id="top-menu-print-sublist-li-4" >
+							блокноты
+						</li >
+						<li class="top-menu-sublist-li" id="top-menu-print-sublist-li-5" >
+							брошюры
+						</li >
+						<li class="top-menu-sublist-li" id="top-menu-print-sublist-li-6" >
+							буклеты
+						</li >
+						<li class="top-menu-sublist-li" id="top-menu-print-sublist-li-7" >
+							воблеры
+						</li >
+						<li class="top-menu-sublist-li" id="top-menu-print-sublist-li-8" >
+							грамоты
+						</li >
+						<li class="top-menu-sublist-li" id="top-menu-print-sublist-li-9" >
+							листовки и флаера
+						</li >
+						<li class="top-menu-sublist-li" id="top-menu-print-sublist-li-10" >
+							открытки
+						</li >
+
+					</ul >
+
+				</li >
+				<li class="top-menu" id="top-menu-design" >
+					<a id="top-menu-design-a" class="top-menu-a" href="kudat3" >Дизайн</a >
+
+					<ul id="top-menu-design-sublist-ul" class="top-menu-sublist-ul">
+						<li class="top-menu-sublist-li" id="top-menu-design-sublist-li-1">
+							<a class="top-menu-design-sublist-a" href="kudato1"></a>
+						</li>
+						<li class="top-menu-sublist-li" id="top-menu-design-sublist-li-2">
+							<a class="top-menu-design-sublist-a" href="kudato2"></a>
+						</li>
+						<li class="top-menu-sublist-li" id="top-menu-design-sublist-li-3">
+							<a class="top-menu-design-sublist-a" href="kudato3"></a>
+						</li>
+						<li class="top-menu-sublist-li" id="top-menu-design-sublist-li-4">
+							<a class="top-menu-design-sublist-a" href="kudato4"></a>
+						</li>
+						<li class="top-menu-sublist-li" id="top-menu-design-sublist-li-5">
+							<a class="top-menu-design-sublist-a" href="kudato5"></a>
+						</li>
+						<li class="top-menu-sublist-li" id="top-menu-design-sublist-li-6">
+							<a class="top-menu-design-sublist-a" href="kudato6"></a>
+						</li>
+					</ul>
+
+				</li >
+				<li class="top-menu" id="top-menu-maket-rules" >
+					<a id="top-menu-maket-rules-a" class="top-menu-a" href="kudato4" >Требования</a >
+				</li >
+				<li class="top-menu" id="top-menu-FAQ" >
+					<a id="top-menu-FAQ-a" class="top-menu-a" href="kudato5" >FAQ</a >
+				</li >
+				<li class="top-menu" id="top-menu-something" >
+					<a id="top-menu-something-a" class="top-menu-a" href="kudato6" >что-то</a >
+				</li >
+				<li class="top-menu" id="top-menu-contacts" >
+					<a id="top-menu-contacts-a" class="top-menu-a" href="kudato7" >контакты</a >
+				</li >
+			</ul >
+		
+		</div >
+		
+<!--		<div id="content-ob"-->
+<!--		     class="cycle-slideshow"-->
+<!--		     data-cycle-fx="scrollHorz"-->
+<!--		     data-cycle-timeout="3000"-->
+<!--		     data-cycle-speed="200"-->
+<!--		     data-cycle-slides="a"-->
+<!--		     data-cycle-pager-template="<strong><a href=#> {{slideNum}} </a></strong>"-->
+<!--		>-->
+<!--			<div class="cycle-pager"></div>-->
+<!--			<a href="/page1.html"><img src="/site/img/1.jpg" /></a>-->
+<!--			<a href="/page2.html"><img src="/site/img/2.jpg" /></a>-->
+<!--			<a href="/page3.html"><img src="/site/img/3.jpg" /></a>-->
+<!--			<a href="/page4.html"><img src="/site/img/4.jpg" /></a>-->
+<!--			<a href="/page5.html"><img src="/site/img/5.jpg" /></a>-->
+<!---->
+<!--		</div >-->
+
+		<div class="owl-carousel owl-theme owl-loaded">
+			<div class="owl-stage-outer">
+				<div class="owl-stage">
+					<div class="owl-item">
+						<a href="/page1.html"><img src="/site/img/1.jpg" /></a>
+					</div>
+					<div class="owl-item">
+						<a href="/page1.html"><img src="/site/img/2.jpg" /></a>
+					</div>
+					<div class="owl-item">
+						<a href="/page1.html"><img src="/site/img/3.jpg" /></a>
+					</div>
+					<div class="owl-item">
+						<a href="/page1.html"><img src="/site/img/4.jpg" /></a>
+					</div>
+					<div class="owl-item">
+						<a href="/page1.html"><img src="/site/img/5.jpg" /></a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	
+	</div >
+	<div id="site-center" class="site-center" >
+		
+		<div id="site-center-body" class="site-center-body" >
+
+			<div id="register-fon-full" ></div >
+			
+			<!--				<-- zadniy fon pri registracii -->
+			<div class="register-fon" id="register-fon" >
+				<img class="closeImg" src="close.png" alt="" >
+				
+				<div class="formHeadline" id="formHeadline" >Register form</div >
+				
+				<!--						forma registracii-->
+				
+				<form action="register.php" id="regform" class="form" method="post"
+				      name="nameregform" onsubmit="return validate(this)" >
+					
+					<input type="text" placeholder="forename" name="formForename"
+					       id="formForename" class="input"  >
+					<label class="labelform" id="0" for="formForename" > </label >
+					
+					<input type="text" placeholder="surname" name="formSurname"
+					       id="formSurname" class="input"  >
+					<label class="labelform" for="formSurname" id="1" > </label >
+					
+					<input type="text" placeholder="tel" name="formTelephone"
+					       id="formTelephone" class="input"  >
+					<label class="labelform" for="formTelephone" id="2" > </label >
+					
+					<input type="text" placeholder="email" name="formEmail"
+					       id="formEmail" class="input"  >
+					<label class="labelform" for="formEmail" id="3" > </label >
+					
+					<input type="text" placeholder="login" name="formLogin"
+					       id="formLogin" class="input"  >
+					<label class="labelform" for="formLogin" id="4" > </label >
+					
+					<input placeholder="password" name="formPassword"
+					       id="formPassword" class="input"  >
+					<label class="labelform" for="formPassword" id="5" > </label >
+					
+					<input placeholder="confirm password" name="formConfirmPassword"
+					       id="formConfirmPassword" class="input" >
+					<label class="labelform" for="formConfirmPassword" id="6" > </label >
+					
+					<div id="divSubmit" ><input type="submit" value="register" class="submit" id="submitButton" >
+					</div >
+				</form >
+			
+			</div >
+<!--			всплывающее окно после рег-->
+			<div id="regSuccessOrFail" class="afterRegister" >
+				<div id="afterRegisterTop" >
+					<img id="closeRegSuccesOrFail" class="closeImg"
+					     src="close.png"
+					     alt="" > Регистрация прошла успешно?<p id="yesorno" ></p >
+				</div >
+				<div id="afterRegisterBottom" >
+					<div class="return" id="returnToMain" >вернуться на главную</div >
+					<div class="return" id="returnToPersonalAreaOrToAdmin" >
+						<a id="linkToPersonalAreaOrToAdmin" href="http://google.com" > вернуться в личный кабинет или сообщить админу </a >
+					</div >
+				</div >
+			</div >
+
+
+<!--			register div-->
+			<div id="formEnterDiv" class="formEnterDiv" >
+<!--			close img div	-->
+				<div style="height: 12px;width: 100%; margin: 0; border-radius: inherit;" >
+					<img id="closeFromEnter" class="closeImg"
+					     src="close.png" alt="" >
+				</div >
+<!--				form div-->
+				<div id="formEnterDivDiv" style="margin: 20px auto" >
+					<form action="login.php" id="formEnter" class="form" method="post"
+					      >
+						<input type="text" placeholder="email" class="input" id="formEnterEmail"
+						       name="formEnterEmail" value="asdg@adfg.dfgdf">
+						<input type="password" placeholder="password" class="input" id="formEnterPassword"
+						       name="formEnterPassword" value="Cegthkfnrj5">
+						<label class="labelform" id="failLogin"></label>
+						<input type="button" id="formEnterButton" value="Enter">
+					</form >
+				</div >
+<!--botoom div-->
+				<div id="formEnterBottom" class="formEnterBottom">
+					<div id="formEnterBottomReturnToMain"><a href="" >вернуться на главную</a></div>
+					<div id="formEnterBottomForgotPassword">
+						<a id="formEnterBottomForgotPasswordA" href="" style="display: none">забыли праоль?</a>
+						<a id="formEnterBottomRegisterA"  href=""> регистрация</a>
+					</div>
+				</div>
+			
+			</div >
+		
+		</div >
+		
+		
+		<div id="site-center-down" class="site-center-down" >
+			<div class="navigation site-center-down-menu" id="navigation" >навигация</div >
+			<div id="payment" class="payment site-center-down-menu" >способы оплаты</div >
+			<div id="delivery" class="delivery site-center-down-menu" >доставка</div >
+			<div id="full-adress" class="full-adress site-center-down-menu" >адрес</div >
+		</div >
+	</div >
+
+</div >
+
+
+</body >
+
+
+</html >
